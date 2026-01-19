@@ -1,0 +1,1310 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS基础教学 - 针对0基础学生设计</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Microsoft YaHei', sans-serif;
+            line-height: 1.6;
+            background-color: #f0f2f5;
+            color: #333;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+            border-radius: 8px;
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        .intro {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        .section {
+            background-color: white;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .section-title {
+            background-color: #c0392b;
+            color: white;
+            padding: 15px 20px;
+            font-size: 1.5rem;
+        }
+        .property-demo {
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        .property-title {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .property-name {
+            background-color: #e74c3c;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 4px;
+            font-weight: bold;
+            margin-right: 15px;
+        }
+        .property-desc {
+            color: #7f8c8d;
+            font-style: italic;
+        }
+        .example-area {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            border-left: 4px solid #e74c3c;
+        }
+        .code-container {
+            margin-bottom: 20px;
+        }
+        pre {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 6px;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            overflow-x: auto;
+            font-size: 14px;
+            line-height: 1.5;
+            tab-size: 2;
+            white-space: pre;
+            margin: 0 0 15px 0;
+        }
+        .html-tag {
+            color: #e74c3c;
+        }
+        .html-attr {
+            color: #3498db;
+        }
+        .html-value {
+            color: #2ecc71;
+        }
+        .css-selector {
+            color: #e74c3c;
+        }
+        .css-property {
+            color: #3498db;
+        }
+        .css-value {
+            color: #2ecc71;
+        }
+        .css-comment {
+            color: #95a5a6;
+        }
+        .note {
+            background-color: #fff9e6;
+            border-left: 4px solid #f39c12;
+            padding: 12px 15px;
+            margin-top: 15px;
+            border-radius: 0 4px 4px 0;
+        }
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+        .demo-result {
+            background-color: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        .demo-element {
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 4px;
+        }
+        .highlight {
+            background-color: #3498db;
+            color: white;
+        }
+        .highlight-bold {
+            background-color: #2ecc71;
+            color: white;
+            font-weight: bold;
+        }
+        .highlight-red {
+            background-color: #e74c3c;
+            color: white;
+        }
+        .hover-demo {
+            background-color: #9b59b6;
+            color: white;
+            padding: 15px;
+            border-radius: 4px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .hover-demo:hover {
+            background-color: #8e44ad;
+            transform: scale(1.05);
+        }
+        .box-model-demo {
+            background-color: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            position: relative;
+        }
+        .box-model-layer {
+            position: relative;
+            padding: 10px;
+            margin: 15px;
+            text-align: center;
+        }
+        .margin-layer {
+            background-color: rgba(231, 76, 60, 0.1);
+            border: 2px dashed #e74c3c;
+        }
+        .border-layer {
+            background-color: rgba(52, 152, 219, 0.1);
+            border: 2px solid #3498db;
+        }
+        .padding-layer {
+            background-color: rgba(46, 204, 113, 0.1);
+            border: 2px dashed #2ecc71;
+        }
+        .content-layer {
+            background-color: rgba(155, 89, 182, 0.1);
+            border: 1px solid #9b59b6;
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .layer-label {
+            position: absolute;
+            top: -12px;
+            left: 10px;
+            background: white;
+            padding: 0 5px;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+        .layer-value {
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+            font-size: 0.8rem;
+            color: #666;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+        .flex-demo {
+            display: flex;
+            justify-content: space-between;
+            background: #ecf0f1;
+            padding: 15px;
+            border-radius: 4px;
+        }
+        .flex-item {
+            background: #3498db;
+            color: white;
+            padding: 15px;
+            flex: 1;
+            margin: 0 5px;
+            text-align: center;
+            border-radius: 4px;
+        }
+        .code-label {
+            font-weight: bold;
+            color: #2c3e50;
+            margin: 15px 0 8px 0;
+            font-size: 1.1rem;
+        }
+        
+        /* 新增的Flex布局示例样式 */
+        .flex-example {
+            display: flex;
+            margin: 15px 0;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            background-color: #f8f9fa;
+        }
+        .flex-example-item {
+            padding: 20px;
+            margin: 5px;
+            background-color: #3498db;
+            color: white;
+            text-align: center;
+            border-radius: 4px;
+        }
+        .flex-example-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        .flex-container {
+            display: flex;
+            min-height: 150px;
+            border: 2px dashed #7f8c8d;
+            border-radius: 6px;
+            padding: 10px;
+            margin: 15px 0;
+        }
+        .flex-item-demo {
+            padding: 20px;
+            margin: 5px;
+            background-color: #3498db;
+            color: white;
+            text-align: center;
+            border-radius: 4px;
+            min-width: 60px;
+        }
+        .axis-demo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        .main-axis {
+            width: 300px;
+            height: 3px;
+            background-color: #e74c3c;
+            position: relative;
+        }
+        .main-axis::before {
+            content: "主轴";
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        .main-axis::after {
+            content: "→";
+            position: absolute;
+            right: -10px;
+            top: -8px;
+            color: #e74c3c;
+            font-size: 20px;
+        }
+        .cross-axis {
+            width: 3px;
+            height: 200px;
+            background-color: #2ecc71;
+            position: relative;
+        }
+        .cross-axis::before {
+            content: "交叉轴";
+            position: absolute;
+            left: -30px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #2ecc71;
+            font-weight: bold;
+            writing-mode: vertical-lr;
+        }
+        .cross-axis::after {
+            content: "↓";
+            position: absolute;
+            bottom: -15px;
+            left: -5px;
+            color: #2ecc71;
+            font-size: 20px;
+        }
+        .flex-direction-demo {
+            display: flex;
+            flex-direction: row;
+            min-height: 100px;
+            border: 2px solid #3498db;
+            border-radius: 6px;
+            padding: 10px;
+            margin: 15px 0;
+        }
+        .flex-direction-item {
+            padding: 15px;
+            margin: 5px;
+            background-color: #3498db;
+            color: white;
+            text-align: center;
+            border-radius: 4px;
+            min-width: 60px;
+        }
+        .property-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        .property-table th, .property-table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        .property-table th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+        .property-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .interactive-demo {
+            margin-top: 20px;
+        }
+        .interactive-controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            margin-right: 20px;
+        }
+        .control-label {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .control-select {
+            padding: 8px 12px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            background-color: white;
+        }
+        .interactive-flex-container {
+            display: flex;
+            min-height: 150px;
+            border: 2px solid #3498db;
+            border-radius: 6px;
+            padding: 10px;
+            margin: 15px 0;
+            transition: all 0.3s;
+        }
+        .interactive-flex-item {
+            padding: 20px;
+            margin: 5px;
+            background-color: #3498db;
+            color: white;
+            text-align: center;
+            border-radius: 4px;
+            min-width: 60px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>CSS基础教学</h1>
+        <p class="intro">专为0基础学生设计 - 从选择器到盒子模型</p>
+    </header>
+
+    <!-- 第一部分：CSS选择器 -->
+    <div class="section">
+        <div class="section-title">1. CSS选择器 - 如何选中HTML元素</div>
+
+        <div class="property-demo">
+            <div class="property-title">
+                <div class="property-name">元素选择器</div>
+                <div class="property-desc">通过HTML标签名选择元素</div>
+            </div>
+            <p style="margin-bottom: 15px;"><strong>工作原理：</strong> CSS通过HTML标签名来选中页面上的所有同类型元素。</p>
+            
+            <div class="demo-result">
+                <h4>HTML结构：</h4>
+                <div class="demo-element">普通div</div>
+                <div class="demo-element">普通div</div>
+                <div class="demo-element" style="color: #e74c3c; font-weight: bold;">这是p标签</div>
+                <div class="demo-element" style="color: #e74c3c; font-weight: bold;">这也是p标签</div>
+                <div class="demo-element">普通span</div>
+            </div>
+            
+            <div class="code-container">
+                <div class="code-label">HTML代码：</div>
+                <pre><span class="html-tag">&lt;body&gt;</span>
+  <span class="html-tag">&lt;div&gt;</span>普通div<span class="html-tag">&lt;/div&gt;</span>
+  <span class="html-tag">&lt;div&gt;</span>普通div<span class="html-tag">&lt;/div&gt;</span>
+  <span class="html-tag">&lt;p&gt;</span>这是p标签<span class="html-tag">&lt;/p&gt;</span>
+  <span class="html-tag">&lt;p&gt;</span>这也是p标签<span class="html-tag">&lt;/p&gt;</span>
+  <span class="html-tag">&lt;span&gt;</span>普通span<span class="html-tag">&lt;/span&gt;</span>
+<span class="html-tag">&lt;/body&gt;</span></pre>
+                
+                <div class="code-label">CSS代码：</div>
+                <pre><span class="css-comment">/* 选中所有p标签 */</span>
+<span class="css-selector">p</span> {
+  <span class="css-property">color</span>: <span class="css-value">#e74c3c</span>;
+  <span class="css-property">font-weight</span>: <span class="css-value">bold</span>;
+}
+
+<span class="css-comment">/* 注意：div和span标签不会被选中 */</span></pre>
+            </div>
+            
+            <div class="note">
+                <strong>总结：</strong> 元素选择器会选中页面上<strong>所有</strong>匹配的HTML标签。上面的CSS代码会选中所有&lt;p&gt;标签，将它们变成红色和粗体，但不会影响&lt;div&gt;和&lt;span&gt;标签。
+            </div>
+        </div>
+
+        <div class="property-demo">
+            <div class="property-title">
+                <div class="property-name">类选择器</div>
+                <div class="property-desc">通过class属性选择元素</div>
+            </div>
+            <p style="margin-bottom: 15px;"><strong>工作原理：</strong> CSS通过HTML元素的class属性值来选中元素。一个元素可以有多个class，用空格分隔。</p>
+            
+            <div class="demo-result">
+                <h4>HTML结构：</h4>
+                <div class="demo-element">普通div</div>
+                <div class="demo-element highlight">class="highlight"的div</div>
+                <div class="demo-element">普通div</div>
+                <div class="demo-element highlight highlight-bold">class="highlight highlight-bold"的div</div>
+                <div class="demo-element highlight">class="highlight"的p标签</div>
+            </div>
+            
+            <div class="code-container">
+                <div class="code-label">HTML代码：</div>
+                <pre><span class="html-tag">&lt;div&gt;</span>普通div<span class="html-tag">&lt;/div&gt;</span>
+<span class="html-tag">&lt;div <span class="html-attr">class</span>=<span class="html-value">"highlight"</span>&gt;</span>class="highlight"的div<span class="html-tag">&lt;/div&gt;</span>
+<span class="html-tag">&lt;div&gt;</span>普通div<span class="html-tag">&lt;/div&gt;</span>
+<span class="html-tag">&lt;div <span class="html-attr">class</span>=<span class="html-value">"highlight highlight-bold"</span>&gt;</span>class="highlight highlight-bold"的div<span class="html-tag">&lt;/div&gt;</span>
+<span class="html-tag">&lt;p <span class="html-attr">class</span>=<span class="html-value">"highlight"</span>&gt;</span>class="highlight"的p标签<span class="html-tag">&lt;/p&gt;</span></pre>
+                
+                <div class="code-label">CSS代码：</div>
+                <pre><span class="css-comment">/* 选中所有class包含"highlight"的元素 */</span>
+<span class="css-selector">.highlight</span> {
+  <span class="css-property">background-color</span>: <span class="css-value">#3498db</span>;
+  <span class="css-property">color</span>: <span class="css-value">white</span>;
+  <span class="css-property">padding</span>: <span class="css-value">10px</span>;
+}
+
+<span class="css-comment">/* 选中所有class包含"highlight-bold"的元素 */</span>
+<span class="css-selector">.highlight-bold</span> {
+  <span class="css-property">font-weight</span>: <span class="css-value">bold</span>;
+  <span class="css-property">background-color</span>: <span class="css-value">#2ecc71</span>;
+  <span class="css-comment">/* 会覆盖上面的背景色 */</span>
+}</pre>
+            </div>
+            
+            <div class="note">
+                <strong>总结：</strong> 类选择器以<strong>点号(.)开头</strong>，后面跟class名称。它可以选中所有具有该class的元素，无论是什么HTML标签。一个元素可以有多个class，样式会合并应用。
+            </div>
+        </div>
+
+        <div class="property-demo">
+            <div class="property-title">
+                <div class="property-name">ID选择器</div>
+                <div class="property-desc">通过id属性选择元素</div>
+            </div>
+            <p style="margin-bottom: 15px;"><strong>工作原理：</strong> CSS通过HTML元素的id属性值来选中元素。id在页面中应该是唯一的。</p>
+            
+            <div class="demo-result">
+                <h4>HTML结构：</h4>
+                <div class="demo-element" style="color: #e74c3c; font-size: 24px; font-weight: bold; text-align: center; padding: 10px; border: 2px solid #e74c3c;">我是主标题(id="main-title")</div>
+                <div class="demo-element">普通div</div>
+                <div class="demo-element" style="background-color: #2ecc71; color: white; padding: 15px; border-radius: 4px; text-align: center;">特殊盒子(id="special-box")</div>
+                <div class="demo-element">普通div</div>
+            </div>
+            
+            <div class="code-container">
+                <div class="code-label">HTML代码：</div>
+                <pre><span class="html-tag">&lt;div <span class="html-attr">id</span>=<span class="html-value">"main-title"</span>&gt;</span>我是主标题(id="main-title")<span class="html-tag">&lt;/div&gt;</span>
+<span class="html-tag">&lt;div&gt;</span>普通div<span class="html-tag">&lt;/div&gt;</span>
+<span class="html-tag">&lt;div <span class="html-attr">id</span>=<span class="html-value">"special-box"</span>&gt;</span>特殊盒子(id="special-box")<span class="html-tag">&lt;/div&gt;</span>
+<span class="html-tag">&lt;div&gt;</span>普通div<span class="html-tag">&lt;/div&gt;</span></pre>
+                
+                <div class="code-label">CSS代码：</div>
+                <pre><span class="css-comment">/* 选中id为"main-title"的元素 */</span>
+<span class="css-selector">#main-title</span> {
+  <span class="css-property">color</span>: <span class="css-value">#e74c3c</span>;
+  <span class="css-property">font-size</span>: <span class="css-value">24px</span>;
+  <span class="css-property">font-weight</span>: <span class="css-value">bold</span>;
+  <span class="css-property">text-align</span>: <span class="css-value">center</span>;
+  <span class="css-property">border</span>: <span class="css-value">2px solid #e74c3c</span>;
+  <span class="css-property">padding</span>: <span class="css-value">10px</span>;
+}
+
+<span class="css-comment">/* 选中id为"special-box"的元素 */</span>
+<span class="css-selector">#special-box</span> {
+  <span class="css-property">background-color</span>: <span class="css-value">#2ecc71</span>;
+  <span class="css-property">color</span>: <span class="css-value">white</span>;
+  <span class="css-property">padding</span>: <span class="css-value">15px</span>;
+  <span class="css-property">border-radius</span>: <span class="css-value">4px</span>;
+  <span class="css-property">text-align</span>: <span class="css-value">center</span>;
+}</pre>
+            </div>
+            
+            <div class="note">
+                <strong>总结：</strong> ID选择器以<strong>井号(#)开头</strong>，后面跟id名称。它应该用于选择页面中唯一的元素。与class不同，一个id在页面中只能出现一次。
+            </div>
+        </div>
+
+        <div class="property-demo">
+            <div class="property-title">
+                <div class="property-name">伪类选择器</div>
+                <div class="property-desc">根据元素状态选择元素</div>
+            </div>
+            <p style="margin-bottom: 15px;"><strong>工作原理：</strong> 伪类选择器用于选择处于特定状态的元素，比如鼠标悬停、被点击等。</p>
+            
+            <div class="demo-result">
+                <h4>HTML结构：</h4>
+                <p>将鼠标悬停在下面的盒子上：</p>
+                <div class="hover-demo">悬停在这里</div>
+                <a href="#" style="color: #3498db; text-decoration: none; display: inline-block; margin-top: 10px; padding: 5px 10px;">这是一个链接</a>
+            </div>
+            
+            <div class="code-container">
+                <div class="code-label">HTML代码：</div>
+                <pre><span class="html-tag">&lt;div <span class="html-attr">class</span>=<span class="html-value">"hover-box"</span>&gt;</span>悬停在这里<span class="html-tag">&lt;/div&gt;</span>
+<span class="html-tag">&lt;a <span class="html-attr">href</span>=<span class="html-value">"#"</span>&gt;</span>这是一个链接<span class="html-tag">&lt;/a&gt;</span></pre>
+                
+                <div class="code-label">CSS代码：</div>
+                <pre><span class="css-comment">/* 基础样式 */</span>
+<span class="css-selector">.hover-box</span> {
+  <span class="css-property">background-color</span>: <span class="css-value">#9b59b6</span>;
+  <span class="css-property">color</span>: <span class="css-value">white</span>;
+  <span class="css-property">padding</span>: <span class="css-value">15px</span>;
+  <span class="css-property">border-radius</span>: <span class="css-value">4px</span>;
+  <span class="css-property">text-align</span>: <span class="css-value">center</span>;
+  <span class="css-property">cursor</span>: <span class="css-value">pointer</span>;
+  <span class="css-property">transition</span>: <span class="css-value">all 0.3s</span>;
+}
+
+<span class="css-comment">/* 鼠标悬停时的样式 */</span>
+<span class="css-selector">.hover-box:hover</span> {
+  <span class="css-property">background-color</span>: <span class="css-value">#8e44ad</span>;
+  <span class="css-property">transform</span>: <span class="css-value">scale(1.05)</span>;
+}
+
+<span class="css-comment">/* 链接基础样式 */</span>
+<span class="css-selector">a</span> {
+  <span class="css-property">color</span>: <span class="css-value">#3498db</span>;
+  <span class="css-property">text-decoration</span>: <span class="css-value">none</span>;
+  <span class="css-property">display</span>: <span class="css-value">inline-block</span>;
+  <span class="css-property">margin-top</span>: <span class="css-value">10px</span>;
+  <span class="css-property">padding</span>: <span class="css-value">5px 10px</span>;
+  <span class="css-property">border-radius</span>: <span class="css-value">4px</span>;
+}
+
+<span class="css-comment">/* 链接鼠标悬停时的样式 */</span>
+<span class="css-selector">a:hover</span> {
+  <span class="css-property">background-color</span>: <span class="css-value">#3498db</span>;
+  <span class="css-property">color</span>: <span class="css-value">white</span>;
+}</pre>
+            </div>
+            
+            <div class="note">
+                <strong>总结：</strong> 伪类选择器以<strong>冒号(:)开头</strong>，用于选择元素的特殊状态。最常用的是<code>:hover</code>（鼠标悬停），还有<code>:active</code>（被点击时）、<code>:focus</code>（获得焦点时）等。
+            </div>
+        </div>
+    </div>
+
+    <!-- 第二部分：CSS盒子模型 -->
+    <div class="section">
+        <div class="section-title">2. CSS盒子模型 - 理解元素布局</div>
+
+        <div class="property-demo">
+            <div class="property-title">
+                <div class="property-name">盒子模型结构</div>
+                <div class="property-desc">每个元素都是一个矩形盒子</div>
+            </div>
+            <div class="box-model-demo">
+                <div class="box-model-layer margin-layer">
+                    <span class="layer-label">外边距 margin: 30px</span>
+                    <span class="layer-value">margin</span>
+                    <div class="box-model-layer border-layer">
+                        <span class="layer-label">边框 border: 5px</span>
+                        <span class="layer-value">border</span>
+                        <div class="box-model-layer padding-layer">
+                            <span class="layer-label">内边距 padding: 20px</span>
+                            <span class="layer-value">padding</span>
+                            <div class="box-model-layer content-layer">
+                                <span class="layer-label">内容 content</span>
+                                <span class="layer-value">width: 200px<br>height: 100px</span>
+                                <p style="margin: 0; font-weight: bold;">这是实际内容</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="code-container">
+                <div class="code-label">CSS代码：</div>
+                <pre><span class="css-comment">/* 盒子模型CSS代码 */</span>
+<span class="css-selector">.box</span> {
+  <span class="css-comment">/* 内容区域大小 */</span>
+  <span class="css-property">width</span>: <span class="css-value">200px</span>;
+  <span class="css-property">height</span>: <span class="css-value">100px</span>;
+  
+  <span class="css-comment">/* 内边距：内容与边框的距离 */</span>
+  <span class="css-property">padding</span>: <span class="css-value">20px</span>;
+  
+  <span class="css-comment">/* 边框：盒子的边框线 */</span>
+  <span class="css-property">border</span>: <span class="css-value">5px solid #3498db</span>;
+  
+  <span class="css-comment">/* 外边距：盒子与其他元素的距离 */</span>
+  <span class="css-property">margin</span>: <span class="css-value">30px</span>;
+  
+  <span class="css-comment">/* 背景颜色，方便观察 */</span>
+  <span class="css-property">background-color</span>: <span class="css-value">#f8f9fa</span>;
+}</pre>
+            </div>
+            
+            <div class="note">
+                <strong>盒子模型理解：</strong> 就像包装一个礼物，内容就是礼物本身，内边距是填充物，边框是包装盒，外边距是盒子与其他物品的间隔。
+            </div>
+        </div>
+
+        <div class="property-demo">
+            <div class="property-title">
+                <div class="property-name">box-sizing属性</div>
+                <div class="property-desc">控制盒子尺寸计算方式</div>
+            </div>
+            <div class="example-area">
+                <p>两种盒子模型对比：</p>
+                <div style="display: flex; gap: 20px; margin-top: 15px;">
+                    <div style="flex: 1; text-align: center;">
+                        <p><strong>content-box (默认)</strong></p>
+                        <div style="
+                            width: 150px;
+                            height: 100px;
+                            padding: 20px;
+                            border: 5px solid #3498db;
+                            background-color: rgba(52, 152, 219, 0.2);
+                            margin: 0 auto;
+                        ">
+                            元素总宽度 = 150 + 20×2 + 5×2 = 200px
+                        </div>
+                    </div>
+                    <div style="flex: 1; text-align: center;">
+                        <p><strong>border-box (推荐)</strong></p>
+                        <div style="
+                            width: 150px;
+                            height: 100px;
+                            padding: 20px;
+                            border: 5px solid #2ecc71;
+                            background-color: rgba(46, 204, 113, 0.2);
+                            margin: 0 auto;
+                            box-sizing: border-box;
+                        ">
+                            元素总宽度 = 150px (包含padding和border)
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="code-container">
+                <div class="code-label">content-box 模型：</div>
+                <pre><span class="css-comment">/* content-box：宽度只包含内容 */</span>
+<span class="css-selector">.box1</span> {
+  <span class="css-property">box-sizing</span>: <span class="css-value">content-box</span>; <span class="css-comment">/* 默认值 */</span>
+  <span class="css-property">width</span>: <span class="css-value">150px</span>;
+  <span class="css-property">padding</span>: <span class="css-value">20px</span>;
+  <span class="css-property">border</span>: <span class="css-value">5px solid #3498db</span>;
+  <span class="css-comment">/* 实际总宽度 = 150 + 20×2 + 5×2 = 200px */</span>
+}</pre>
+                
+                <div class="code-label">border-box 模型：</div>
+                <pre><span class="css-comment">/* border-box：宽度包含内容、内边距和边框 */</span>
+<span class="css-selector">.box2</span> {
+  <span class="css-property">box-sizing</span>: <span class="css-value">border-box</span>; <span class="css-comment">/* 推荐使用 */</span>
+  <span class="css-property">width</span>: <span class="css-value">150px</span>;
+  <span class="css-property">padding</span>: <span class="css-value">20px</span>;
+  <span class="css-property">border</span>: <span class="css-value">5px solid #2ecc71</span>;
+  <span class="css-comment">/* 实际总宽度 = 150px */</span>
+}</pre>
+            </div>
+            
+            <div class="note">
+                <strong>提示：</strong> 在实际项目中，通常会在CSS开头设置 <code>* { box-sizing: border-box; }</code>，这样更符合直觉，方便布局。
+            </div>
+        </div>
+    </div>
+
+    <!-- 第三部分：常用CSS属性 -->
+    <div class="section">
+        <div class="section-title">3. 常用CSS属性 - 控制元素外观</div>
+
+        <div class="property-demo">
+            <div class="property-title">
+                <div class="property-name">文字样式</div>
+                <div class="property-desc">控制文字外观</div>
+            </div>
+            <div class="example-area">
+                <p style="color: #e74c3c; font-size: 24px; font-weight: bold; font-family: 'Microsoft YaHei', sans-serif; text-align: center;">
+                    红色、24px、加粗、居中文字
+                </p>
+                <p style="color: #3498db; font-size: 16px; font-style: italic; text-decoration: underline; line-height: 1.8;">
+                    蓝色、16px、斜体、下划线、1.8倍行高的文字。注意行与行之间的间距增大了，阅读更舒适。
+                </p>
+            </div>
+            
+            <div class="code-container">
+                <div class="code-label">CSS代码：</div>
+                <pre><span class="css-comment">/* 文字样式CSS代码 */</span>
+<span class="css-selector">h1</span> {
+  <span class="css-comment">/* 文字颜色 */</span>
+  <span class="css-property">color</span>: <span class="css-value">#e74c3c</span>;
+  
+  <span class="css-comment">/* 文字大小 */</span>
+  <span class="css-property">font-size</span>: <span class="css-value">24px</span>;
+  
+  <span class="css-comment">/* 字体粗细 */</span>
+  <span class="css-property">font-weight</span>: <span class="css-value">bold</span>;
+  
+  <span class="css-comment">/* 文本对齐 */</span>
+  <span class="css-property">text-align</span>: <span class="css-value">center</span>;
+}
+
+<span class="css-selector">p</span> {
+  <span class="css-comment">/* 文字颜色 */</span>
+  <span class="css-property">color</span>: <span class="css-value">#3498db</span>;
+  
+  <span class="css-comment">/* 文字大小 */</span>
+  <span class="css-property">font-size</span>: <span class="css-value">16px</span>;
+  
+  <span class="css-comment">/* 字体样式 */</span>
+  <span class="css-property">font-style</span>: <span class="css-value">italic</span>;
+  
+  <span class="css-comment">/* 文本装饰 */</span>
+  <span class="css-property">text-decoration</span>: <span class="css-value">underline</span>;
+  
+  <span class="css-comment">/* 行高（文字行间距） */</span>
+  <span class="css-property">line-height</span>: <span class="css-value">1.8</span>;
+}</pre>
+            </div>
+        </div>
+
+        <div class="property-demo">
+            <div class="property-title">
+                <div class="property-name">颜色和背景</div>
+                <div class="property-desc">控制元素颜色和背景</div>
+            </div>
+            <div class="example-area">
+                <div style="display: flex; gap: 15px; flex-wrap: wrap; margin-top: 10px;">
+                    <div style="width: 100px; height: 100px; background-color: #3498db; border-radius: 4px;"></div>
+                    <div style="width: 100px; height: 100px; background-color: #e74c3c; border-radius: 4px;"></div>
+                    <div style="width: 100px; height: 100px; background-color: #2ecc71; border-radius: 4px;"></div>
+                    <div style="width: 100px; height: 100px; background: linear-gradient(45deg, #3498db, #9b59b6); border-radius: 4px;"></div>
+                </div>
+            </div>
+            
+            <div class="code-container">
+                <div class="code-label">CSS代码：</div>
+                <pre><span class="css-comment">/* 颜色和背景CSS代码 */</span>
+<span class="css-selector">.blue-box</span> {
+  <span class="css-property">background-color</span>: <span class="css-value">#3498db</span>; <span class="css-comment">/* 纯色背景 */</span>
+  <span class="css-property">width</span>: <span class="css-value">100px</span>;
+  <span class="css-property">height</span>: <span class="css-value">100px</span>;
+}
+
+<span class="css-selector">.red-box</span> {
+  <span class="css-property">background-color</span>: <span class="css-value">#e74c3c</span>;
+  <span class="css-property">width</span>: <span class="css-value">100px</span>;
+  <span class="css-property">height</span>: <span class="css-value">100px</span>;
+}
+
+<span class="css-selector">.gradient-box</span> {
+  <span class="css-property">background</span>: <span class="css-value">linear-gradient(45deg, #3498db, #9b59b6)</span>; <span class="css-comment">/* 渐变背景 */</span>
+  <span class="css-property">width</span>: <span class="css-value">100px</span>;
+  <span class="css-property">height</span>: <span class="css-value">100px</span>;
+}</pre>
+            </div>
+        </div>
+    </div>
+
+    <!-- 第四部分：布局属性 -->
+    <div class="section">
+        <div class="section-title">4. 布局属性 - 控制元素排列</div>
+
+        <div class="property-demo">
+            <div class="property-title">
+                <div class="property-name">display属性</div>
+                <div class="property-desc">控制元素显示方式</div>
+            </div>
+            <div class="example-area">
+                <p><strong>block（块级元素）:</strong> 独占一行，可设置宽高</p>
+                <div style="display: block; background: #3498db; color: white; padding: 10px; margin: 5px 0;">
+                    块级元素1
+                </div>
+                <div style="display: block; background: #3498db; color: white; padding: 10px; margin: 5px 0;">
+                    块级元素2
+                </div>
+                
+                <p style="margin-top: 15px;"><strong>inline（行内元素）:</strong> 不独占一行，不可设置宽高</p>
+                <span style="display: inline; background: #e74c3c; color: white; padding: 5px;">行内元素1</span>
+                <span style="display: inline; background: #e74c3c; color: white; padding: 5px;">行内元素2</span>
+                
+                <p style="margin-top: 15px;"><strong>inline-block（行内块元素）:</strong> 不独占一行，可设置宽高</p>
+                <div style="display: inline-block; background: #2ecc71; color: white; padding: 10px; width: 100px; margin: 5px;">
+                    行内块1
+                </div>
+                <div style="display: inline-block; background: #2ecc71; color: white; padding: 10px; width: 100px; margin: 5px;">
+                    行内块2
+                </div>
+            </div>
+            
+            <div class="code-container">
+                <div class="code-label">CSS代码：</div>
+                <pre><span class="css-comment">/* display属性CSS代码 */</span>
+<span class="css-comment">/* 块级元素 */</span>
+<span class="css-selector">div</span> {
+  <span class="css-property">display</span>: <span class="css-value">block</span>;
+  <span class="css-property">width</span>: <span class="css-value">200px</span>;
+  <span class="css-property">height</span>: <span class="css-value">100px</span>;
+}
+
+<span class="css-comment">/* 行内元素 */</span>
+<span class="css-selector">span</span> {
+  <span class="css-property">display</span>: <span class="css-value">inline</span>;
+  <span class="css-comment">/* 不能设置宽高 */</span>
+}
+
+<span class="css-comment">/* 行内块元素 */</span>
+<span class="css-selector">.inline-block</span> {
+  <span class="css-property">display</span>: <span class="css-value">inline-block</span>;
+  <span class="css-property">width</span>: <span class="css-value">100px</span>;
+  <span class="css-property">height</span>: <span class="css-value">50px</span>;
+}</pre>
+            </div>
+        </div>
+
+        <div class="property-demo">
+            <div class="property-title">
+                <div class="property-name">Flex布局</div>
+                <div class="property-desc">现代布局方式 - 一维布局</div>
+            </div>
+            
+            <p style="margin-bottom: 15px;"><strong>什么是Flex布局？</strong> Flex布局（弹性盒子布局）是CSS3中新增的一种布局方式，可以轻松实现各种复杂的页面布局，特别是在一维布局（水平或垂直方向）中表现出色。</p>
+            
+            <div class="axis-demo">
+                <div class="main-axis"></div>
+                <div class="cross-axis"></div>
+            </div>
+            
+            <div class="note">
+                <strong>核心概念：</strong> Flex布局中有两个重要概念：<strong>主轴（main axis）</strong>和<strong>交叉轴（cross axis）</strong>。默认情况下，主轴是水平的，交叉轴是垂直的。
+            </div>
+            
+            <h3 style="margin-top: 20px; color: #2c3e50;">1. Flex容器属性</h3>
+            
+            <div class="property-demo">
+                <div class="property-title">
+                    <div class="property-name">flex-direction</div>
+                    <div class="property-desc">设置主轴方向</div>
+                </div>
+                
+                <div class="interactive-demo">
+                    <div class="flex-direction-demo" id="directionDemo">
+                        <div class="flex-direction-item">1</div>
+                        <div class="flex-direction-item">2</div>
+                        <div class="flex-direction-item">3</div>
+                        <div class="flex-direction-item">4</div>
+                    </div>
+                    
+                    <div class="interactive-controls">
+                        <div class="control-group">
+                            <div class="control-label">flex-direction:</div>
+                            <select class="control-select" id="directionSelect" onchange="changeFlexDirection()">
+                                <option value="row">row (默认，水平从左到右)</option>
+                                <option value="row-reverse">row-reverse (水平从右到左)</option>
+                                <option value="column">column (垂直从上到下)</option>
+                                <option value="column-reverse">column-reverse (垂直从下到上)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <table class="property-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 30%;">属性值</th>
+                            <th>效果</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>row</code> (默认)</td>
+                            <td>主轴为水平方向，起点在左端</td>
+                        </tr>
+                        <tr>
+                            <td><code>row-reverse</code></td>
+                            <td>主轴为水平方向，起点在右端</td>
+                        </tr>
+                        <tr>
+                            <td><code>column</code></td>
+                            <td>主轴为垂直方向，起点在上端</td>
+                        </tr>
+                        <tr>
+                            <td><code>column-reverse</code></td>
+                            <td>主轴为垂直方向，起点在下端</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="code-container">
+                    <div class="code-label">CSS代码：</div>
+                    <pre><span class="css-selector">.container</span> {
+  <span class="css-property">display</span>: <span class="css-value">flex</span>;
+  <span class="css-property">flex-direction</span>: <span class="css-value">row</span>; <span class="css-comment">/* 可以改为row-reverse | column | column-reverse */</span>
+}</pre>
+                </div>
+            </div>
+            
+            <div class="property-demo">
+                <div class="property-title">
+                    <div class="property-name">justify-content</div>
+                    <div class="property-desc">主轴对齐方式</div>
+                </div>
+                
+                <div class="interactive-demo">
+                    <div class="interactive-flex-container" id="justifyDemo" style="justify-content: flex-start;">
+                        <div class="interactive-flex-item">1</div>
+                        <div class="interactive-flex-item">2</div>
+                        <div class="interactive-flex-item">3</div>
+                    </div>
+                    
+                    <div class="interactive-controls">
+                        <div class="control-group">
+                            <div class="control-label">justify-content:</div>
+                            <select class="control-select" id="justifySelect" onchange="changeJustifyContent()">
+                                <option value="flex-start">flex-start (默认，从主轴起点开始)</option>
+                                <option value="flex-end">flex-end (从主轴终点开始)</option>
+                                <option value="center">center (居中)</option>
+                                <option value="space-between">space-between (两端对齐，项目间隔相等)</option>
+                                <option value="space-around">space-around (每个项目两侧间隔相等)</option>
+                                <option value="space-evenly">space-evenly (项目间隔相等，包括两端)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="code-container">
+                    <div class="code-label">CSS代码：</div>
+                    <pre><span class="css-selector">.container</span> {
+  <span class="css-property">display</span>: <span class="css-value">flex</span>;
+  <span class="css-property">justify-content</span>: <span class="css-value">center</span>; <span class="css-comment">/* 可以改为flex-start | flex-end | center | space-between | space-around | space-evenly */</span>
+}</pre>
+                </div>
+            </div>
+            
+            <div class="property-demo">
+                <div class="property-title">
+                    <div class="property-name">align-items</div>
+                    <div class="property-desc">交叉轴对齐方式</div>
+                </div>
+                
+                <div class="interactive-demo">
+                    <div class="interactive-flex-container" id="alignItemsDemo" style="align-items: stretch; height: 200px;">
+                        <div class="interactive-flex-item" style="height: auto;">1</div>
+                        <div class="interactive-flex-item" style="height: auto;">2</div>
+                        <div class="interactive-flex-item" style="height: auto;">3</div>
+                    </div>
+                    
+                    <div class="interactive-controls">
+                        <div class="control-group">
+                            <div class="control-label">align-items:</div>
+                            <select class="control-select" id="alignItemsSelect" onchange="changeAlignItems()">
+                                <option value="stretch">stretch (默认，拉伸填满容器高度)</option>
+                                <option value="flex-start">flex-start (交叉轴起点对齐)</option>
+                                <option value="flex-end">flex-end (交叉轴终点对齐)</option>
+                                <option value="center">center (交叉轴居中对齐)</option>
+                                <option value="baseline">baseline (基线对齐)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="code-container">
+                    <div class="code-label">CSS代码：</div>
+                    <pre><span class="css-selector">.container</span> {
+  <span class="css-property">display</span>: <span class="css-value">flex</span>;
+  <span class="css-property">align-items</span>: <span class="css-value">center</span>; <span class="css-comment">/* 可以改为stretch | flex-start | flex-end | center | baseline */</span>
+}</pre>
+                </div>
+            </div>
+            
+            <h3 style="margin-top: 20px; color: #2c3e50;">2. Flex项目属性</h3>
+            
+            <div class="property-demo">
+                <div class="property-title">
+                    <div class="property-name">flex</div>
+                    <div class="property-desc">定义项目的放大比例和缩小比例</div>
+                </div>
+                
+                <div class="example-area">
+                    <p><strong>flex属性是flex-grow, flex-shrink, flex-basis的简写</strong></p>
+                    <div class="flex-container" style="justify-content: flex-start;">
+                        <div class="flex-item-demo" style="flex: 1;">flex: 1</div>
+                        <div class="flex-item-demo" style="flex: 1;">flex: 1</div>
+                        <div class="flex-item-demo" style="flex: 2;">flex: 2 (占2份)</div>
+                    </div>
+                    <p style="margin-top: 10px;">三个项目的比例是1:1:2，所以第三个项目占用的空间是前两个的2倍。</p>
+                </div>
+                
+                <table class="property-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 30%;">属性值</th>
+                            <th>效果</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>flex: 1</code></td>
+                            <td>简写形式，相当于 flex: 1 1 0%</td>
+                        </tr>
+                        <tr>
+                            <td><code>flex: 0 0 200px</code></td>
+                            <td>不放大，不缩小，固定宽度200px</td>
+                        </tr>
+                        <tr>
+                            <td><code>flex-grow: 1</code></td>
+                            <td>定义项目的放大比例，默认0（不放大）</td>
+                        </tr>
+                        <tr>
+                            <td><code>flex-shrink: 0</code></td>
+                            <td>定义项目的缩小比例，默认1（空间不足时缩小）</td>
+                        </tr>
+                        <tr>
+                            <td><code>flex-basis: 200px</code></td>
+                            <td>定义项目在主轴上的初始大小</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="code-container">
+                    <div class="code-label">CSS代码：</div>
+                    <pre><span class="css-comment">/* 容器 */</span>
+<span class="css-selector">.container</span> {
+  <span class="css-property">display</span>: <span class="css-value">flex</span>;
+}
+
+<span class="css-comment">/* 项目 */</span>
+<span class="css-selector">.item1</span> {
+  <span class="css-property">flex</span>: <span class="css-value">1</span>; <span class="css-comment">/* 占1份 */</span>
+}
+
+<span class="css-selector">.item2</span> {
+  <span class="css-property">flex</span>: <span class="css-value">2</span>; <span class="css-comment">/* 占2份 */</span>
+}
+
+<span class="css-selector">.item3</span> {
+  <span class="css-property">flex</span>: <span class="css-value">0 0 200px</span>; <span class="css-comment">/* 固定宽度200px */</span>
+}</pre>
+                </div>
+            </div>
+            
+            <div class="property-demo">
+                <div class="property-title">
+                    <div class="property-name">align-self</div>
+                    <div class="property-desc">单个项目在交叉轴上的对齐方式</div>
+                </div>
+                
+                <div class="example-area">
+                    <p><strong>align-self允许单个项目有与其他项目不一样的对齐方式</strong></p>
+                    <div class="flex-container" style="align-items: flex-start; height: 150px;">
+                        <div class="flex-item-demo">align-items: flex-start</div>
+                        <div class="flex-item-demo" style="align-self: center;">align-self: center</div>
+                        <div class="flex-item-demo" style="align-self: flex-end;">align-self: flex-end</div>
+                        <div class="flex-item-demo">align-items: flex-start</div>
+                    </div>
+                </div>
+                
+                <div class="code-container">
+                    <div class="code-label">CSS代码：</div>
+                    <pre><span class="css-selector">.container</span> {
+  <span class="css-property">display</span>: <span class="css-value">flex</span>;
+  <span class="css-property">align-items</span>: <span class="css-value">flex-start</span>;
+}
+
+<span class="css-selector">.item2</span> {
+  <span class="css-property">align-self</span>: <span class="css-value">center</span>; <span class="css-comment">/* 覆盖容器的align-items设置 */</span>
+}
+
+<span class="css-selector">.item3</span> {
+  <span class="css-property">align-self</span>: <span class="css-value">flex-end</span>; <span class="css-comment">/* 覆盖容器的align-items设置 */</span>
+}</pre>
+                </div>
+            </div>
+            
+            <h3 style="margin-top: 20px; color: #2c3e50;">3. Flex布局实际应用</h3>
+            
+            <div class="example-area">
+                <h4>导航栏示例</h4>
+                <div class="flex-container" style="justify-content: space-between; background-color: #2c3e50; padding: 0;">
+                    <div style="display: flex; align-items: center;">
+                        <div style="padding: 15px 20px; color: white; font-weight: bold; font-size: 1.2rem;">LOGO</div>
+                        <div style="display: flex;">
+                            <div style="padding: 15px 20px; color: white; cursor: pointer; border-bottom: 3px solid #e74c3c;">首页</div>
+                            <div style="padding: 15px 20px; color: #bdc3c7; cursor: pointer;">产品</div>
+                            <div style="padding: 15px 20px; color: #bdc3c7; cursor: pointer;">关于</div>
+                            <div style="padding: 15px 20px; color: #bdc3c7; cursor: pointer;">联系</div>
+                        </div>
+                    </div>
+                    <div style="display: flex; align-items: center;">
+                        <div style="padding: 8px 15px; margin: 0 10px; background-color: #e74c3c; color: white; border-radius: 4px; cursor: pointer;">登录</div>
+                        <div style="padding: 8px 15px; background-color: #3498db; color: white; border-radius: 4px; cursor: pointer;">注册</div>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 20px;">
+                    <h4>卡片布局示例</h4>
+                    <div class="flex-container" style="justify-content: space-around; flex-wrap: wrap;">
+                        <div style="width: 200px; background-color: white; border-radius: 8px; overflow: hidden; margin: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                            <div style="height: 120px; background-color: #3498db;"></div>
+                            <div style="padding: 15px;">
+                                <h4 style="margin: 0 0 10px 0;">卡片标题</h4>
+                                <p style="margin: 0; color: #7f8c8d; font-size: 0.9rem;">这是一张使用Flex布局的卡片，可以自动适应不同屏幕大小。</p>
+                            </div>
+                        </div>
+                        <div style="width: 200px; background-color: white; border-radius: 8px; overflow: hidden; margin: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                            <div style="height: 120px; background-color: #2ecc71;"></div>
+                            <div style="padding: 15px;">
+                                <h4 style="margin: 0 0 10px 0;">卡片标题</h4>
+                                <p style="margin: 0; color: #7f8c8d; font-size: 0.9rem;">这是一张使用Flex布局的卡片，可以自动适应不同屏幕大小。</p>
+                            </div>
+                        </div>
+                        <div style="width: 200px; background-color: white; border-radius: 8px; overflow: hidden; margin: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                            <div style="height: 120px; background-color: #e74c3c;"></div>
+                            <div style="padding: 15px;">
+                                <h4 style="margin: 0 0 10px 0;">卡片标题</h4>
+                                <p style="margin: 0; color: #7f8c8d; font-size: 0.9rem;">这是一张使用Flex布局的卡片，可以自动适应不同屏幕大小。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="code-container">
+                <div class="code-label">导航栏CSS代码：</div>
+                <pre><span class="css-comment">/* 导航栏布局 */</span>
+<span class="css-selector">.navbar</span> {
+  <span class="css-property">display</span>: <span class="css-value">flex</span>;
+  <span class="css-property">justify-content</span>: <span class="css-value">space-between</span>;
+  <span class="css-property">align-items</span>: <span class="css-value">center</span>;
+  <span class="css-property">background-color</span>: <span class="css-value">#2c3e50</span>;
+  <span class="css-property">padding</span>: <span class="css-value">0 20px</span>;
+}
+
+<span class="css-selector">.nav-left</span> {
+  <span class="css-property">display</span>: <span class="css-value">flex</span>;
+  <span class="css-property">align-items</span>: <span class="css-value">center</span>;
+}
+
+<span class="css-selector">.nav-right</span> {
+  <span class="css-property">display</span>: <span class="css-value">flex</span>;
+  <span class="css-property">align-items</span>: <span class="css-value">center</span>;
+}</pre>
+            </div>
+            
+            <div class="note" style="margin-top: 20px;">
+                <strong>Flex布局学习要点：</strong> 
+                <ul style="margin-top: 5px;">
+                    <li>先设置容器为 <code>display: flex</code> 开启Flex布局</li>
+                    <li>理解主轴和交叉轴的概念</li>
+                    <li><code>justify-content</code> 控制主轴对齐方式</li>
+                    <li><code>align-items</code> 控制交叉轴对齐方式</li>
+                    <li><code>flex-direction</code> 控制主轴方向</li>
+                    <li><code>flex-wrap</code> 控制是否换行（默认不换行）</li>
+                    <li>项目属性 <code>flex</code> 控制项目如何伸缩</li>
+                    <li>项目属性 <code>align-self</code> 允许单个项目有不同的对齐方式</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 总结 -->
+    <div class="section">
+        <div class="section-title">学习总结</div>
+        <div class="property-demo">
+            <div class="example-area">
+                <h3>CSS学习路径总结</h3>
+                <ol style="margin-left: 20px; margin-bottom: 20px;">
+                    <li><strong>选择器</strong> - 先学会如何选中HTML元素</li>
+                    <li><strong>盒子模型</strong> - 理解元素如何布局</li>
+                    <li><strong>常用属性</strong> - 控制元素外观和样式</li>
+                    <li><strong>布局属性</strong> - 控制元素排列方式</li>
+                </ol>
+                
+                <h3>Flex布局核心要点</h3>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 15px 0;">
+                    <div style="background: #f8f9fa; padding: 10px; border-radius: 4px;">
+                        <strong>容器属性</strong><br>
+                        <code>display: flex</code> - 开启Flex布局<br>
+                        <code>flex-direction</code> - 主轴方向<br>
+                        <code>justify-content</code> - 主轴对齐<br>
+                        <code>align-items</code> - 交叉轴对齐
+                    </div>
+                    <div style="background: #f8f9fa; padding: 10px; border-radius: 4px;">
+                        <strong>项目属性</strong><br>
+                        <code>flex</code> - 项目伸缩比例<br>
+                        <code>align-self</code> - 单个项目对齐<br>
+                        <code>order</code> - 项目排列顺序
+                    </div>
+                </div>
+
+                <div class="note" style="margin-top: 20px;">
+                    <strong>学习建议：</strong> 
+                    <ul style="margin-top: 5px;">
+                        <li>理解选择器是CSS的第一步 - 不知道选谁，就无法应用样式</li>
+                        <li>多使用浏览器开发者工具（F12）查看和调试CSS</li>
+                        <li>从简单的例子开始，逐步增加复杂度</li>
+                        <li>理解盒子模型是学好CSS布局的关键</li>
+                        <li>在实际项目中，Flex布局和Grid布局最常用</li>
+                        <li>通过上面的交互示例理解Flex布局的不同属性效果</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>CSS基础教学 &copy; 2023 - 专为0基础学生设计</p>
+        <p style="margin-top: 5px; font-size: 0.8rem;">使用浏览器开发者工具（F12）可以查看任何网页的HTML结构和CSS样式</p>
+    </footer>
+</div>
+
+<!-- 添加缺失的JavaScript代码 -->
+<script>
+    // Flex布局交互功能
+    function changeFlexDirection() {
+        const select = document.getElementById('directionSelect');
+        const demo = document.getElementById('directionDemo');
+        demo.style.flexDirection = select.value;
+    }
+    
+    function changeJustifyContent() {
+        const select = document.getElementById('justifySelect');
+        const demo = document.getElementById('justifyDemo');
+        demo.style.justifyContent = select.value;
+    }
+    
+    function changeAlignItems() {
+        const select = document.getElementById('alignItemsSelect');
+        const demo = document.getElementById('alignItemsDemo');
+        demo.style.alignItems = select.value;
+    }
+</script>
+</body>
+</html>
